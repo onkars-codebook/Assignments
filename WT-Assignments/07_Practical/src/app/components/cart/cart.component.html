@@ -1,0 +1,8 @@
+<div class="cart">
+    <h2>Shopping Cart</h2>
+    <div *ngFor="let book of cart" class="cart-item">
+      <p>{{ book.title }} - ${{ book.price }}</p>
+    </div>
+    <button (click)="clearCart()">Clear Cart</button>
+  </div>
+  

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Score Calculator</title>
+        <link rel="stylesheet" href="./pico.jade.min.css" />
+        <style>
+            body {
+                background-color: #e3f2fd; 
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+
+            main.container {
+                background-color: white;
+                padding: 2rem;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                max-width: 450px;
+                width: 100%;
+                text-align: center;
+            }
+
+            h1 {
+                color: #1565c0;
+            }
+
+            p {
+                color: #424242;
+                font-size: 14px;
+            }
+
+            label {
+                font-weight: bold;
+                color: #333;
+                display: block;
+                margin-bottom: 5px;
+                text-align: left;
+            }
+
+            input {
+                width: 100%;
+                padding: 10px;
+                margin: 5px 0;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 16px;
+            }
+
+            input[type="submit"] {
+                background-color: #1565c0;
+                color: white;
+                padding: 12px;
+                font-size: 18px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-top: 10px;
+            }
+
+            input[type="submit"]:hover {
+                background-color: #0d47a1;
+            }
+
+            #output {
+                margin-top: 15px;
+                padding: 10px;
+                background-color: #f1f8e9;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <main class="container">
+            <h1>Score Calculator</h1>
+            <p>Make calculating your score for each subject easier</p>
+            <form onsubmit="calculateScore(event)">
+                <label> English
+                    <input type="number" id="english" name="english" placeholder="Enter English Score" required />
+                </label>
+                <label> Marathi
+                    <input type="number" id="marathi" name="marathi" placeholder="Enter Marathi Score" required />
+                </label>
+                <label> Science
+                    <input type="number" id="science" name="science" placeholder="Enter Science Score" required />
+                </label>
+                <label> Mathematics
+                    <input type="number" id="mathematics" name="mathematics" placeholder="Enter Mathematics Score" required />
+                </label>
+                <input type="submit" value="Calculate Score" />
+            </form>
+            <div id="output"></div>
+        </main>
+
+        <script>
+            function calculateScore(event) {
+                event.preventDefault();
+                let english = parseFloat(document.getElementById("english").value) || 0;
+                let marathi = parseFloat(document.getElementById("marathi").value) || 0;
+                let science = parseFloat(document.getElementById("science").value) || 0;
+                let mathematics = parseFloat(document.getElementById("mathematics").value) || 0;
+
+                let total = english + marathi + science + mathematics;
+                let average = total / 4;
+
+                document.getElementById("output").innerHTML = `
+                    <p>Total Score: <strong>${total}</strong></p>
+                    <p>Average Score: <strong>${average.toFixed(2)}</strong></p>
+                `;
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,10 @@
+<div class="book-list">
+    <div class="book" *ngFor="let book of books">
+      <img [src]="book.image" alt="{{ book.title }}">
+      <h3>{{ book.title }}</h3>
+      <p>Author: {{ book.author }}</p>
+      <p>Price: ${{ book.price }}</p>
+      <button (click)="addToCart(book)">Add to Cart</button>
+    </div>
+  </div>
+  
