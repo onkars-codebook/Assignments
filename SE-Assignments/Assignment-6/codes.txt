@@ -1,0 +1,131 @@
+CPS 1:
+@startuml
+[*] --> Login
+
+Login : User logs into the CPS system
+Login --> Dashboard
+
+Dashboard --> PlanDay
+PlanDay : Student starts planning
+PlanDay --> Dashboard : Plan completed
+
+Dashboard --> MainParallelState
+
+state MainParallelState {
+  state AcademicRoutine {
+    [*] --> AttendLectures
+    AttendLectures --> StudyTime : Done
+    StudyTime --> StudyTime : Check phone
+    StudyTime --> BreakTime : Take break
+    BreakTime --> StudyTime : Resume
+    StudyTime --> [*]
+  }
+
+  --
+
+  state PersonalRoutine {
+    [*] --> PersonalTasks
+    PersonalTasks --> Exercise
+    Exercise --> SocialTime
+    SocialTime --> PersonalTasks : Check social media
+    SocialTime --> [*]
+  }
+}
+
+MainParallelState --> ReviewDay
+ReviewDay : Reflect and analyze the day
+ReviewDay --> Dashboard
+
+Dashboard --> Logout
+Logout : User logs out
+Logout --> [*]
+@enduml
+
+
+2.CPS 2 code:
+
+
+@startuml
+[*] --> Login
+
+Login : Freelancer logs into the CPS system
+Login --> Dashboard
+
+Dashboard --> ProjectSetup
+ProjectSetup : Create/Open Project
+
+ProjectSetup --> CodeManager
+
+state CodeManager {
+  state ProjectWorkflow {
+    [*] --> WriteCode
+    WriteCode --> TestCode : Save & test
+    TestCode --> CommitChanges : All tests passed
+    CommitChanges --> ReviewHistory : Commit successful
+    ReviewHistory --> PushChanges : Push to remote
+    PushChanges --> [*]
+  }
+
+  --
+
+  state PersonalWorkflow {
+    [*] --> TakeBreak
+    TakeBreak --> CheckEmails
+    CheckEmails --> ReturnToWork
+    ReturnToWork --> [*]
+  }
+}
+
+CodeManager --> Reflect
+Reflect : Check project progress and to-do list
+
+Reflect --> Dashboard
+Dashboard --> Logout
+Logout : User logs out
+Logout --> [*]
+@enduml
+
+
+3. CPS 3:
+
+
+@startuml
+[*] --> Login
+
+Login : Junior Engineer logs into the CPS system
+Login --> Dashboard
+
+Dashboard --> BugTracker
+BugTracker : Opens bug/task report
+
+BugTracker --> AnalyzeError
+AnalyzeError : Reads logs, traces error
+
+AnalyzeError --> TryFix
+
+state TryFix {
+  [*] --> ApplyFix
+  ApplyFix --> RunCode : Fix applied
+  RunCode --> CheckOutput
+
+  CheckOutput --> Success : Output correct
+  CheckOutput --> ApplyFix : Still error
+
+  Success --> [*]
+}
+
+TryFix --> DocumentFix
+DocumentFix : Notes the issue and how it was solved
+
+DocumentFix --> CommitFix
+CommitFix : Commits and pushes the fix
+
+CommitFix --> Dashboard
+Dashboard --> Logout
+Logout : User logs out
+Logout --> [*]
+@enduml
+
+
+
+
